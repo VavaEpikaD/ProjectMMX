@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bw5x6dbss1byf" path="res://entities/player/player.tscn" id="1_iqpyg"]
 [ext_resource type="Texture2D" uid="uid://dfowpqq6l5q6i" path="res://default_tile.png" id="1_ltsqr"]
+[ext_resource type="PackedScene" uid="uid://d3yuhe0fsq1lp" path="res://entities/amogus/amogus.tscn" id="3_hfasd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
 texture = ExtResource("1_ltsqr")
@@ -20,3 +21,6 @@ position = Vector2(33, 207)
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600496952]
 tile_map_data = PackedByteArray("AAAAAA4AAAAAAAAAAAABAA4AAAAAAAAAAAACAA4AAAAAAAAAAAADAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAAUAA4AAAAAAAAAAAAVAA4AAAAAAAAAAAAWAA4AAAAAAAAAAAAXAA4AAAAAAAAAAAAYAA4AAAAAAAAAAAAZAA4AAAAAAAAAAAAaAA4AAAAAAAAAAAD//w4AAAAAAAAAAAAbAA4AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_103ah")
+
+[node name="Amogus" parent="." unique_id=1736744900 instance=ExtResource("3_hfasd")]
+position = Vector2(170, 132)

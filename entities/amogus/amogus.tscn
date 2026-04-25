@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d3yuhe0fsq1lp"]
+
+[ext_resource type="Script" uid="uid://dh53dbhu63gf0" path="res://entities/amogus/amogus.gd" id="1_i5bqu"]
+[ext_resource type="Texture2D" uid="uid://bf0yj631arqma" path="res://sprites/amogus/amogus-1.png" id="2_aiqw4"]
+[ext_resource type="Texture2D" uid="uid://co1eyk58b5pix" path="res://sprites/amogus/amogus-2.png" id="3_dhoat"]
+[ext_resource type="Texture2D" uid="uid://cd0301n7bj3xv" path="res://sprites/amogus/amogus-3.png" id="4_taygv"]
+[ext_resource type="Texture2D" uid="uid://bar2hd0tjjvx7" path="res://sprites/amogus/amogus-run-1.png" id="6_gihcn"]
+[ext_resource type="Texture2D" uid="uid://on2fiqm8cngi" path="res://sprites/amogus/amogus-run-2.png" id="7_j16i7"]
+[ext_resource type="Texture2D" uid="uid://bomoqvhs8nd6v" path="res://sprites/amogus/amogus-run-3.png" id="8_dx7yy"]
+[ext_resource type="Texture2D" uid="uid://d2t0jfysvipct" path="res://sprites/amogus/amogus-run-4.png" id="9_ba7fp"]
+
+[sub_resource type="Animation" id="Animation_qt4u0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_aiqw4")]
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4havy"]
+load_path = "res://.godot/imported/amogus-4.png-1b78b4bda73f83bc62ef48e193e3fd34.ctex"
+
+[sub_resource type="Animation" id="Animation_xluyx"]
+resource_name = "idle"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_aiqw4"), ExtResource("3_dhoat"), ExtResource("4_taygv"), SubResource("CompressedTexture2D_4havy")]
+}
+
+[sub_resource type="Animation" id="Animation_phm7x"]
+resource_name = "run"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_gihcn"), ExtResource("7_j16i7"), ExtResource("8_dx7yy"), ExtResource("9_ba7fp")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6c7gt"]
+_data = {
+&"RESET": SubResource("Animation_qt4u0"),
+&"idle": SubResource("Animation_xluyx"),
+&"run": SubResource("Animation_phm7x")
+}
+
+[node name="Amogus" type="Node2D" unique_id=1736744900]
+script = ExtResource("1_i5bqu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2097949046]
+libraries/ = SubResource("AnimationLibrary_6c7gt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1965462131]
+texture = ExtResource("2_aiqw4")
