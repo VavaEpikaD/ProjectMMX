@@ -1,21 +1,16 @@
 extends State
-
+class_name IdleState
 
 func enter() -> void:
-	# Animation logic may also be handled here
+	player.max_air_speed = 150.0
 	pass
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func physics_update(_delta: float) -> void:
-	var dir = Input.get_axis("move_left", "move_right")
+	var dir: float = Input.get_axis("move_left", "move_right")
+	
+	player.velocity.x = 0
+	player.velocity.y = 0
 	
 	if dir:
 		transitioned.emit(self, "run")

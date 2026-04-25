@@ -1,0 +1,22 @@
+[gd_scene format=4 uid="uid://dcduytcorbl7s"]
+
+[ext_resource type="PackedScene" uid="uid://bw5x6dbss1byf" path="res://entities/player/player.tscn" id="1_iqpyg"]
+[ext_resource type="Texture2D" uid="uid://dfowpqq6l5q6i" path="res://default_tile.png" id="1_ltsqr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
+texture = ExtResource("1_ltsqr")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_103ah"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_iqpyg")
+
+[node name="DebugLevel" type="Node2D" unique_id=1462840463]
+
+[node name="Player" parent="." unique_id=1769268742 instance=ExtResource("1_iqpyg")]
+position = Vector2(33, 207)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600496952]
+tile_map_data = PackedByteArray("AAAAAA4AAAAAAAAAAAABAA4AAAAAAAAAAAACAA4AAAAAAAAAAAADAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAAUAA4AAAAAAAAAAAAVAA4AAAAAAAAAAAAWAA4AAAAAAAAAAAAXAA4AAAAAAAAAAAAYAA4AAAAAAAAAAAAZAA4AAAAAAAAAAAAaAA4AAAAAAAAAAAD//w4AAAAAAAAAAAAbAA4AAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_103ah")
