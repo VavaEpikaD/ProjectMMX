@@ -28,6 +28,13 @@ func physics_update(delta: float) -> void:
 		return
 		
 	# --- Cancelation Checks ---
+	if player.jump_buffer_timer > 0:
+		if player.is_on_floor() or player.coyote_timer > 0:
+			player.consume_jump()
+			player.max_air_speed = dash_speed
+			transitioned.emit(self, "jump")
+			return
+	
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		player.max_air_speed = dash_speed
 		transitioned.emit(self, "jump")
@@ -42,4 +49,3 @@ func physics_update(delta: float) -> void:
 	if current_dir != 0 and current_dir != dash_dir:
 		transitioned.emit(self, "run")
 		return
-	

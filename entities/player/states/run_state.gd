@@ -11,7 +11,8 @@ func enter() -> void:
 func physics_update(_delta: float) -> void:
 	var dir: float = Input.get_axis("move_left", "move_right")
 		
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if player.jump_buffer_timer > 0 and player.is_on_floor():
+		player.consume_jump()
 		transitioned.emit(self, "jump")
 		return
 		

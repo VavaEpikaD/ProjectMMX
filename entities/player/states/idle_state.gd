@@ -16,7 +16,8 @@ func physics_update(_delta: float) -> void:
 		transitioned.emit(self, "run")
 		return
 	
-	if Input.is_action_just_pressed("jump"):
+	if player.jump_buffer_timer > 0:
+		player.consume_jump()
 		transitioned.emit(self, "jump")
 		return
 		

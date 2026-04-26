@@ -41,7 +41,7 @@ func physics_update(_delta: float) -> void:
 		player.velocity.x = kick_force.x * wall_normal.x
 		player.velocity.y = kick_force.y
 		
-		player.wall_jump_lockout_timer = 0.15
+		player.wall_jump_lockout_timer = 0.05
 		
 		transitioned.emit(self, "jump")
 		

@@ -5,13 +5,12 @@ class_name JumpState
 @export var base_run_speed: float = 150.0
 
 func enter() -> void:
+	# Kill timer to prevent double jump bug
+	player.consume_jump()
+	
 	player.velocity.y = jump_velocity
 	
-func physics_update(_delta: float) -> void:
-	# When releasing the button mid jump, create shorter hop
-	if Input.is_action_just_released("jump") and player.velocity.y < 0:
-		player.velocity.y *= 0.5
-	
+func physics_update(_delta: float) -> void:	
 	# Are we falling?
 	if player.velocity.y >= 0:
 		transitioned.emit(self, "fall")

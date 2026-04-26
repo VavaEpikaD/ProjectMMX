@@ -5,8 +5,19 @@ class_name FallState
 
 func physics_update(_delta: float) -> void:
 	var dir: float = Input.get_axis("move_left", "move_right")
-
+	# Execute coyote time jump
+	if player.jump_buffer_timer > 0 and player.coyote_timer > 0:
+		player.consume_jump()
+		transitioned.emit(self, "jump")
+		return
+	
 	if player.is_on_floor():
+		# Execute buffered jump on landing
+		if player.jump_buffer_timer > 0:
+			player.consume_jump()
+			transitioned.emit(self, "jump")
+			return
+	
 		if dir != 0:
 			transitioned.emit(self, "run")
 		else:
