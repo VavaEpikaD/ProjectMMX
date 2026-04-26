@@ -8,7 +8,9 @@ var wall_jump_lockout_timer: float = 0.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 
-var bullet_scene: PackedScene = preload("res://entities/bullet/bullet.tscn")
+var lemon_scene: PackedScene = preload("res://entities/projectiles/buster/lemon.tscn")
+var charge_1_scene = preload("res://entities/projectiles/buster/level1_charge.tscn")
+var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.tscn")
 
 @export var fall_gravity_multiplier: float = 1.5 # Makes falling feel faster/heavier
 @export var short_hop_gravity_multiplier: float = 3.0 # Yanks the player down if they release jump
@@ -49,9 +51,6 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	update_animations()
-
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
 	
 func _process(delta: float) -> void:
 	if movement_sm.current_state:
@@ -73,12 +72,19 @@ func consume_jump() -> void:
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 
-func shoot() -> void:
+func shoot(charge_level: int) -> void:
 	var bullets = get_tree().get_nodes_in_group("player_bullet")
-	if bullets.size() >= 3:
+	if charge_level == 0 and bullets.size() >= 3:
 		return
 
-	var b = bullet_scene.instantiate()
+	var bullet_to_spawn: PackedScene
+	match charge_level:
+		2: bullet_to_spawn = charge_2_scene
+		1: bullet_to_spawn = charge_1_scene
+		0: bullet_to_spawn = lemon_scene
+		
+	var b = bullet_to_spawn.instantiate()
+		
 	# spawn at muzzle position if available, otherwise at player position
 	var muzzle = get_node_or_null("Muzzle")
 	b.global_position = muzzle.global_position
