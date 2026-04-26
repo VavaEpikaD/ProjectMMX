@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://gayll2812mv2" path="res://idle.png" id="6_8fjmc"]
 [ext_resource type="Script" uid="uid://dhoclfcfm1t5d" path="res://entities/player/states/jump_state.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dx7io1e450vuc" path="res://entities/player/states/fall_state.gd" id="7_bectd"]
+[ext_resource type="Script" uid="uid://djhh8nn7ysjmu" path="res://entities/player/states/wall_slide_state.gd" id="8_wvtmh"]
 
 [sub_resource type="Animation" id="Animation_bectd"]
 resource_name = "dash"
@@ -25,13 +26,17 @@ resource_name = "jump"
 [sub_resource type="Animation" id="Animation_qiwj3"]
 resource_name = "run"
 
+[sub_resource type="Animation" id="Animation_a1qjk"]
+resource_name = "wallslide"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qiwj3"]
 _data = {
 &"dash": SubResource("Animation_bectd"),
 &"fall": SubResource("Animation_wvtmh"),
 &"idle": SubResource("Animation_8fjmc"),
 &"jump": SubResource("Animation_7thud"),
-&"run": SubResource("Animation_qiwj3")
+&"run": SubResource("Animation_qiwj3"),
+&"wallslide": SubResource("Animation_a1qjk")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkugw"]
@@ -58,6 +63,9 @@ script = ExtResource("6_26q78")
 
 [node name="FallState" type="Node2D" parent="MovementStateMachine" unique_id=642668512]
 script = ExtResource("7_bectd")
+
+[node name="WallSlideState" type="Node2D" parent="MovementStateMachine" unique_id=179760975]
+script = ExtResource("8_wvtmh")
 
 [node name="ActionStateMachine" type="Node2D" parent="." unique_id=1668553607]
 script = ExtResource("4_bls4j")

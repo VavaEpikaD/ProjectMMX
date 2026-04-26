@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var max_air_speed: float = 150.0
+var wall_jump_lockout_timer: float = 0.0
 
 @onready var movement_sm: StateMachine = $MovementStateMachine
 @onready var action_sm: StateMachine = $ActionStateMachine
@@ -13,6 +14,9 @@ func _physics_process(delta: float) -> void:
 		
 	if movement_sm.current_state:
 		movement_sm.current_state.physics_update(delta)
+		
+	if wall_jump_lockout_timer > 0:
+		wall_jump_lockout_timer -= delta
 		
 	move_and_slide()
 	update_animations()

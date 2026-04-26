@@ -13,9 +13,16 @@ func physics_update(_delta: float) -> void:
 			transitioned.emit(self, "idle")
 		return
 	
-	if dir != 0:
-		player.get_node("Sprite2D").flip_h = dir < 0
+	if player.wall_jump_lockout_timer <= 0:
+		if dir != 0:
+			player.get_node("Sprite2D").flip_h = dir < 0
+	
+			player.velocity.x = dir * player.max_air_speed
+		else:
+			player.velocity.x = 0
 
-		player.velocity.x = dir * player.max_air_speed
-	else:
-		player.velocity.x = 0
+	if player.is_on_wall_only() and player.velocity.y > 0:
+		var wall_dir: float = -player.get_wall_normal().x
+		if dir == wall_dir:
+			transitioned.emit(self, "wallslide")
+			return
