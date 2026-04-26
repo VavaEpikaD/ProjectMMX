@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dngasnywhu84n"]
+
+[ext_resource type="Script" uid="uid://mpvy0qmhc8f0" path="res://entities/bullet/bullet.gd" id="1_2kyv7"]
+[ext_resource type="Texture2D" uid="uid://on2fiqm8cngi" path="res://sprites/amogus/amogus-run-2.png" id="2_5h0jh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25cl0"]
+size = Vector2(9.125, 7.125)
+
+[node name="Bullet" type="Node2D" unique_id=47371439]
+script = ExtResource("1_2kyv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=313412220]
+position = Vector2(-2.9802322e-08, -3.7252903e-09)
+scale = Vector2(0.55175775, 0.50781244)
+texture = ExtResource("2_5h0jh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=204627970]
+shape = SubResource("RectangleShape2D_25cl0")
