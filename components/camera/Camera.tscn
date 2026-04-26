@@ -4,3 +4,4 @@
 
 [node name="Camera" type="Camera2D" unique_id=860271958]
 script = ExtResource("1_4qx5r")
+enable_camera_locks = false

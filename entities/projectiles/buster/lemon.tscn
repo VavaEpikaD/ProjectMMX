@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dngasnywhu84n"]
+
+[ext_resource type="Script" uid="uid://mpvy0qmhc8f0" path="res://entities/projectiles/buster/lemon.gd" id="1_ldoi7"]
+[ext_resource type="Texture2D" uid="uid://bl72gcqg8ilek" path="res://assets/sprites/projectiles/buster/lemon.png" id="2_ldoi7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdqgw"]
+atlas = ExtResource("2_ldoi7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecml3"]
+atlas = ExtResource("2_ldoi7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar3to"]
+atlas = ExtResource("2_ldoi7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caj4h"]
+atlas = ExtResource("2_ldoi7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53vpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdqgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecml3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar3to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caj4h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25cl0"]
+size = Vector2(10, 8)
+
+[node name="Lemon" type="Area2D" unique_id=348490192]
+script = ExtResource("1_ldoi7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=917368502]
+position = Vector2(-2.9802322e-08, -3.7252903e-09)
+sprite_frames = SubResource("SpriteFrames_53vpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=204627970]
+shape = SubResource("RectangleShape2D_25cl0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1534542373]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
