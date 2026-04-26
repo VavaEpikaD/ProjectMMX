@@ -80,4 +80,4 @@ texture = ExtResource("6_8fjmc")
 shape = SubResource("RectangleShape2D_fkugw")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=356170028]
-position = Vector2(55, -9)
+position = Vector2(8, 0)
