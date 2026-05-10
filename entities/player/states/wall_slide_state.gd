@@ -11,7 +11,14 @@ var wall_normal: Vector2
 func enter() -> void:
 	wall_normal = player.get_wall_normal()
 	# This might need to change later
-	player.get_node("Sprite2D").flip_h = wall_normal.x < 0
+#	player.get_node("Sprite2D").flip_h = wall_normal.x < 0
+#	player.scale.x = -abs(player.scale.x)
+	#player.get_node("Sprite2D").flip_h = true
+	
+func exit() -> void:
+	#player.scale.x = -abs(player.scale.x)
+	#player.get_node("Sprite2D").flip_h = false
+	pass
 
 func physics_update(_delta: float) -> void:
 	player.velocity.y = slide_speed
@@ -43,5 +50,5 @@ func physics_update(_delta: float) -> void:
 		
 		player.wall_jump_lockout_timer = 0.05
 		
-		transitioned.emit(self, "jump")
+		transitioned.emit(self, "walljump")
 		

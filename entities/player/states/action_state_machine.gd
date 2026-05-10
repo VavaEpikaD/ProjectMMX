@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	
 
 func determine_and_fire() -> void:
-	shoot_anim_timer = 0.3
+	shoot_anim_timer = 0.5
 	
 	var level: int = 0
 	if charge_timer >= charge_tier_2_time:

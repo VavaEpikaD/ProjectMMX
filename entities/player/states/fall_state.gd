@@ -27,6 +27,7 @@ func physics_update(_delta: float) -> void:
 	if player.wall_jump_lockout_timer <= 0:
 		if dir != 0:
 			player.get_node("Sprite2D").flip_h = dir < 0
+			player.update_muzzle()
 	
 			player.velocity.x = dir * player.max_air_speed
 		else:
