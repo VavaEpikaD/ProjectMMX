@@ -30,3 +30,4 @@ func physics_update(_delta: float) -> void:
 	
 	player.velocity.x = dir * speed
 	player.get_node("Sprite2D").flip_h = dir < 0
+	player.update_muzzle()

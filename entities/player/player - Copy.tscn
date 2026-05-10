@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://dgy5e4didoqfm"]
+
+[ext_resource type="Script" uid="uid://cv04xrsni2hr" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="Script" uid="uid://c8dag41hr5ae4" path="res://entities/utils/state_machine.gd" id="2_sglur"]
+[ext_resource type="Script" uid="uid://p6enfdwe3ifr" path="res://entities/player/states/run_state.gd" id="3_bls4j"]
+[ext_resource type="Script" uid="uid://daga3larr3p5v" path="res://entities/player/states/idle_state.gd" id="4_8fjmc"]
+[ext_resource type="Script" uid="uid://psun8jhv2b12" path="res://entities/player/states/action_state_machine.gd" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://be3odvjo0asn3" path="res://entities/player/states/dash_state.gd" id="5_qiwj3"]
+[ext_resource type="Script" uid="uid://dhoclfcfm1t5d" path="res://entities/player/states/jump_state.gd" id="6_26q78"]
+[ext_resource type="Script" uid="uid://dx7io1e450vuc" path="res://entities/player/states/fall_state.gd" id="7_bectd"]
+[ext_resource type="Script" uid="uid://djhh8nn7ysjmu" path="res://entities/player/states/wall_slide_state.gd" id="8_wvtmh"]
+[ext_resource type="Script" uid="uid://bil087qigtat8" path="res://entities/player/states/wall_jump_state.gd" id="9_7thud"]
+[ext_resource type="Texture2D" uid="uid://bq60m4cgmc3u3" path="res://assets/sprites/x/x_base.png" id="10_wvtmh"]
+
+[sub_resource type="Animation" id="Animation_j3ovn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [45]
+}
+
+[sub_resource type="Animation" id="Animation_bectd"]
+resource_name = "dash"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [154, 155]
+}
+
+[sub_resource type="Animation" id="Animation_wvtmh"]
+resource_name = "fall"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [73, 74]
+}
+
+[sub_resource type="Animation" id="Animation_8fjmc"]
+resource_name = "idle"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
+[sub_resource type="Animation" id="Animation_7thud"]
+resource_name = "jump"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [70, 71, 72]
+}
+
+[sub_resource type="Animation" id="Animation_qiwj3"]
+resource_name = "run"
+length = 0.58
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.28, 0.32, 0.38, 0.46, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 47, 48, 49, 50, 51, 52, 43]
+}
+
+[sub_resource type="Animation" id="Animation_afbqv"]
+resource_name = "walljump"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [101, 102, 72]
+}
+
+[sub_resource type="Animation" id="Animation_a1qjk"]
+resource_name = "wallslide"
+length = 200.0
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [98, 99, 100]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qiwj3"]
+_data = {
+&"RESET": SubResource("Animation_j3ovn"),
+&"dash": SubResource("Animation_bectd"),
+&"fall": SubResource("Animation_wvtmh"),
+&"idle": SubResource("Animation_8fjmc"),
+&"jump": SubResource("Animation_7thud"),
+&"run": SubResource("Animation_qiwj3"),
+&"walljump": SubResource("Animation_afbqv"),
+&"wallslide": SubResource("Animation_a1qjk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkugw"]
+size = Vector2(16, 34)
+
+[node name="Player" type="CharacterBody2D" unique_id=1769268742]
+z_index = 1
+script = ExtResource("1_symyc")
+
+[node name="MovementStateMachine" type="Node2D" parent="." unique_id=28073974 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sglur")
+initial_state = NodePath("IdleState")
+
+[node name="RunState" type="Node2D" parent="MovementStateMachine" unique_id=1805310267]
+script = ExtResource("3_bls4j")
+
+[node name="IdleState" type="Node2D" parent="MovementStateMachine" unique_id=785821733]
+script = ExtResource("4_8fjmc")
+
+[node name="DashState" type="Node2D" parent="MovementStateMachine" unique_id=482604714]
+script = ExtResource("5_qiwj3")
+
+[node name="JumpState" type="Node2D" parent="MovementStateMachine" unique_id=1655100398]
+script = ExtResource("6_26q78")
+
+[node name="FallState" type="Node2D" parent="MovementStateMachine" unique_id=642668512]
+script = ExtResource("7_bectd")
+
+[node name="WallSlideState" type="Node2D" parent="MovementStateMachine" unique_id=179760975]
+script = ExtResource("8_wvtmh")
+
+[node name="WallJumpState" type="Node2D" parent="MovementStateMachine" unique_id=1532664077]
+script = ExtResource("9_7thud")
+
+[node name="ActionStateMachine" type="Node2D" parent="." unique_id=1668553607]
+script = ExtResource("4_bls4j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1866180914]
+libraries/ = SubResource("AnimationLibrary_qiwj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509726734]
+texture = ExtResource("10_wvtmh")
+hframes = 14
+vframes = 17
+frame = 45
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=439004391]
+shape = SubResource("RectangleShape2D_fkugw")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=356170028]
+position = Vector2(8, 0)

@@ -4,7 +4,11 @@ class_name StateMachine
 @export var initial_state: State
 
 var current_state: State
+var last_state: State
 var states: Dictionary = {}
+
+func get_state_name(state: State) -> String:
+	return states[state]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,3 +46,4 @@ func on_state_transitioned(state: State, new_state_name: String) -> void:
 	
 	new_state.enter()
 	current_state = new_state
+	last_state = state

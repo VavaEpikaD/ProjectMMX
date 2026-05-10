@@ -1,21 +1,15 @@
 extends State
-class_name JumpState
 
-@export var jump_velocity: float = -400.0
-@export var base_run_speed: float = 150.0
-
+class_name WallJumpState
 func enter() -> void:
-	# Kill timer to prevent double jump bug
+	# Don't set velocity.y here, because WallSlideState already did!
 	player.consume_jump()
-	
-	player.velocity.y = jump_velocity
-	
-func physics_update(_delta: float) -> void:	
-	# Are we falling?
+func physics_update(_delta: float) -> void:
+	# Same fall logic as JumpState
 	if player.velocity.y >= 0:
 		transitioned.emit(self, "fall")
 		return
-		
+	
 	var dir: float = Input.get_axis("move_left", "move_right")
 	if player.wall_jump_lockout_timer <= 0:
 		if dir != 0:
@@ -31,4 +25,3 @@ func physics_update(_delta: float) -> void:
 		if dir == wall_dir:
 			transitioned.emit(self, "wallslide")
 			return
-		

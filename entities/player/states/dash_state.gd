@@ -40,6 +40,9 @@ func physics_update(delta: float) -> void:
 		transitioned.emit(self, "jump")
 		return
 		
+	if Input.is_action_just_pressed("dash"):
+		player.get_node("AnimationPlayer").stop()
+		
 	if not player.is_on_floor():
 		player.max_air_speed = dash_speed
 		transitioned.emit(self, "fall")
