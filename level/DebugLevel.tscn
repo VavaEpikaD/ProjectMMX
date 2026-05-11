@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bw5x6dbss1byf" path="res://entities/player/player.tscn" id="1_iqpyg"]
 [ext_resource type="Texture2D" uid="uid://dfowpqq6l5q6i" path="res://default_tile.png" id="1_ltsqr"]
 [ext_resource type="PackedScene" uid="uid://bcex1po31mx6j" path="res://components/camera/Camera.tscn" id="3_hfasd"]
+[ext_resource type="PackedScene" uid="uid://c5dj1vy0utmoj" path="res://entities/heart/heart.tscn" id="4_2aj5p"]
+[ext_resource type="Script" uid="uid://dpphbmq7t6nsy" path="res://components/pickups/pickup_spawner.gd" id="5_pickup_spawner"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/energy/energy.tscn" id="6_energy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
 texture = ExtResource("1_ltsqr")
@@ -24,3 +27,10 @@ tile_set = SubResource("TileSet_103ah")
 
 [node name="Camera" parent="." unique_id=860271958 node_paths=PackedStringArray("target") instance=ExtResource("3_hfasd")]
 target = NodePath("../Player")
+
+[node name="PickupSpawner" type="Node2D" parent="." unique_id=2012696080]
+position = Vector2(0, 1)
+script = ExtResource("5_pickup_spawner")
+test_spawn_scene = ExtResource("4_2aj5p")
+test_spawn_scene_b = ExtResource("6_energy")
+test_spawn_count_b = 5
