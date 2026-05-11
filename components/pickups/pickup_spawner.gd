@@ -6,6 +6,8 @@ extends Node2D
 @export var test_spawn_count: int = 5
 @export var test_spawn_count_b: int = 5
 @export var test_spawn_rect: Rect2 = Rect2(Vector2(0, 0), Vector2(640, 360))
+@export var randomize_variant: bool = true
+@export_range(0.0, 1.0, 0.05) var big_variant_chance: float = 0.5
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -24,6 +26,7 @@ func spawn_pickup(scene: PackedScene, position: Vector2) -> Node:
 		return null
 
 	var pickup = scene.instantiate()
+	_apply_random_variant(pickup)
 	pickup.global_position = position
 	var parent = _get_spawn_parent()
 	parent.call_deferred("add_child", pickup)
@@ -41,3 +44,11 @@ func spawn_random(scene: PackedScene, count: int, rect: Rect2) -> void:
 func _get_spawn_parent() -> Node:
 	var root = get_tree().current_scene
 	return root if root else self
+
+func _apply_random_variant(pickup: Node) -> void:
+	if not randomize_variant:
+		return
+	if not pickup.has_method("apply_type"):
+		return
+	var is_big = _rng.randf() < big_variant_chance
+	pickup.apply_type(1 if is_big else 0)
