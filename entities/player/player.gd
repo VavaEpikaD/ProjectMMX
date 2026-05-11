@@ -17,11 +17,20 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @export var short_hop_gravity_multiplier: float = 3.5 # Yanks the player down if they release jump
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
+@export var max_health: int = 10
+@export var health: int = 10
+@export var max_energy: int = 5
+@export var energy: int = 5
 @export var wall_slide_shoot_orientation_delay: bool = false
 
 @onready var movement_sm: StateMachine = $MovementStateMachine
 @onready var action_sm: StateMachine = $ActionStateMachine
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	add_to_group("player")
+	health = clamp(health, 0, max_health)
+	energy = clamp(energy, 0, max_energy)
 
 func update_muzzle() -> void:
 	$Muzzle.position.x = -abs($Muzzle.position.x) if $Sprite2D.flip_h else abs($Muzzle.position.x)
@@ -88,6 +97,16 @@ func update_animations() -> void:
 func consume_jump() -> void:
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
+
+func heal(amount: int) -> void:
+	if amount <= 0:
+		return
+	health = clamp(health + amount, 0, max_health)
+
+func add_energy(amount: int) -> void:
+	if amount <= 0:
+		return
+	energy = clamp(energy + amount, 0, max_energy)
 
 func shoot(charge_level: int) -> void:
 	var bullets = get_tree().get_nodes_in_group("player_bullet")
