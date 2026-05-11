@@ -5,6 +5,12 @@ extends Area2D
 
 var _time_alive: float = 0.0
 
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	if anim_sprite:
+		anim_sprite.play("default")
+
 func _process(delta: float) -> void:
 	if lifetime <= 0.0:
 		return
