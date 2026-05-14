@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c5dj1vy0utmoj"]
+[gd_scene format=3 uid="uid://cwmaln4ugcjgx"]
 
-[ext_resource type="Script" path="res://entities/heart/heart.gd" id="2_heartgd"]
+[ext_resource type="Script" uid="uid://brwa3tf830evv" path="res://entities/heart/heart.gd" id="2_heartgd"]
 [ext_resource type="Texture2D" uid="uid://dp8lpsmwa2r55" path="res://assets/sprites/heart/small_heart1.png" id="5_mksa6"]
 [ext_resource type="Texture2D" uid="uid://irfalnbpna4x" path="res://assets/sprites/heart/small_heart2.png" id="6_7onld"]
 [ext_resource type="Texture2D" uid="uid://bkaplu5lfmw4l" path="res://assets/sprites/heart/small_heart3.png" id="7_ybubg"]
@@ -23,18 +23,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f32a7"]
-size = Vector2(14, 14)
+size = Vector2(10, 8.25)
 
 [node name="Area2D" type="Area2D" unique_id=92685114]
 script = ExtResource("2_heartgd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438609313]
 sprite_frames = SubResource("SpriteFrames_2a4aj")
-animation = &"default"
-frame_progress = 0.96894324
+frame = 2
+frame_progress = 0.6605121
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605204126]
-position = Vector2(0, -2)
+position = Vector2(0, -1.125)
 shape = SubResource("RectangleShape2D_f32a7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

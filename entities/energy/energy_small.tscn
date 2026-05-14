@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cqwkaiogq6tww"]
 
 [ext_resource type="Script" uid="uid://c1dycp7niykhg" path="res://entities/energy/energy.gd" id="2_energy_gd"]
-[ext_resource type="Texture2D" uid="uid://e3i1v6vr5n7m0" path="res://assets/sprites/energy/small_energy1.png" id="3_small1"]
-[ext_resource type="Texture2D" uid="uid://g1v4k6t2s8p9q" path="res://assets/sprites/energy/small_energy2.png" id="4_small2"]
-[ext_resource type="Texture2D" uid="uid://m2q6v9y3x7k1l" path="res://assets/sprites/energy/small_energy3.png" id="5_small3"]
-[ext_resource type="Texture2D" uid="uid://p4r7w2z6b8c5d" path="res://assets/sprites/energy/small_energy4.png" id="6_small4"]
+[ext_resource type="Texture2D" uid="uid://doptfw5pg7wm0" path="res://assets/sprites/energy/small_energy1.png" id="3_small1"]
+[ext_resource type="Texture2D" uid="uid://b50xrg843jotu" path="res://assets/sprites/energy/small_energy2.png" id="4_small2"]
+[ext_resource type="Texture2D" uid="uid://jdsh5llena41" path="res://assets/sprites/energy/small_energy3.png" id="5_small3"]
+[ext_resource type="Texture2D" uid="uid://dehf66pudrxx0" path="res://assets/sprites/energy/small_energy4.png" id="6_small4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8v4kx"]
 animations = [{
@@ -27,17 +27,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcbyc"]
+size = Vector2(9, 10)
 
 [node name="Area2D" type="Area2D" unique_id=1320839163]
 script = ExtResource("2_energy_gd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1493719977]
 sprite_frames = SubResource("SpriteFrames_8v4kx")
-animation = &"default"
-playing = true
+frame_progress = 0.7094373
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1167073951]
-position = Vector2(0, -1)
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_bcbyc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
