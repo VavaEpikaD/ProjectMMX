@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bighrt1g2c3d4"]
+
+[ext_resource type="Script" uid="uid://brwa3tf830evv" path="res://entities/heart/heart.gd" id="1_heartgd"]
+[ext_resource type="Texture2D" uid="uid://dsbkolhk0l26s" path="res://assets/sprites/heart/big_heart1.png" id="2_big1"]
+[ext_resource type="Texture2D" uid="uid://ciuli3oo44nsb" path="res://assets/sprites/heart/big_heart2.png" id="3_big2"]
+[ext_resource type="Texture2D" uid="uid://c4ybvsld7wd1u" path="res://assets/sprites/heart/big_heart3.png" id="4_big3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_big"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_big1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_big2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_big3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_big"]
+size = Vector2(16, 16)
+
+[node name="Area2D" type="Area2D" unique_id=321233510]
+script = ExtResource("1_heartgd")
+heal_amount = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=988434615]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_big")
+frame_progress = 0.79989856
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=102578763]
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_big")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

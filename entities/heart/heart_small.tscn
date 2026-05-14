@@ -1,25 +1,21 @@
 [gd_scene format=3 uid="uid://c5dj1vy0utmoj"]
 
-[ext_resource type="Texture2D" uid="uid://cttqxbsxahvf5" path="res://assets/sprites/heart/heart1.png" id="1_d8e0e"]
 [ext_resource type="Script" path="res://entities/heart/heart.gd" id="2_heartgd"]
-[ext_resource type="Texture2D" uid="uid://c5anyj6ejbso2" path="res://assets/sprites/heart/heart2.png" id="3_heart2"]
-[ext_resource type="Texture2D" uid="uid://c3hx3eih8pajt" path="res://assets/sprites/heart/heart3.png" id="4_heart3"]
-[ext_resource type="Texture2D" uid="uid://cc5dce708erry" path="res://assets/sprites/heart/heart4.png" id="5_heart4"]
+[ext_resource type="Texture2D" uid="uid://dp8lpsmwa2r55" path="res://assets/sprites/heart/small_heart1.png" id="5_mksa6"]
+[ext_resource type="Texture2D" uid="uid://irfalnbpna4x" path="res://assets/sprites/heart/small_heart2.png" id="6_7onld"]
+[ext_resource type="Texture2D" uid="uid://bkaplu5lfmw4l" path="res://assets/sprites/heart/small_heart3.png" id="7_ybubg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2a4aj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_d8e0e")
+"texture": ExtResource("5_mksa6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_heart2")
+"texture": ExtResource("6_7onld")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_heart3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_heart4")
+"texture": ExtResource("7_ybubg")
 }],
 "loop": true,
 "name": &"default",
@@ -35,7 +31,7 @@ script = ExtResource("2_heartgd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438609313]
 sprite_frames = SubResource("SpriteFrames_2a4aj")
 animation = &"default"
-playing = true
+frame_progress = 0.96894324
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605204126]
 position = Vector2(0, -2)

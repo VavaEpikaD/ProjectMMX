@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dsbxh7aheabqg"]
+
+[ext_resource type="Script" path="res://entities/energy/energy.gd" id="1_energygd"]
+[ext_resource type="Texture2D" uid="uid://b1g3n4r7y8x2z" path="res://assets/sprites/energy/big_energy1.png" id="2_big1"]
+[ext_resource type="Texture2D" uid="uid://c2h5k8m1p4q7s" path="res://assets/sprites/energy/big_energy2.png" id="3_big2"]
+[ext_resource type="Texture2D" uid="uid://d3j6n9r2t5v8x" path="res://assets/sprites/energy/big_energy3.png" id="4_big3"]
+[ext_resource type="Texture2D" uid="uid://e4l7p0u3w6y9a" path="res://assets/sprites/energy/big_energy4.png" id="5_big4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_big"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_big1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_big2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_big3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_big4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_big"]
+size = Vector2(14, 14)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_energygd")
+energy_amount = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_big")
+animation = &"default"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_big")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
