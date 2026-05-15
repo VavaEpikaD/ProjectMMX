@@ -3,9 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bw5x6dbss1byf" path="res://entities/player/player.tscn" id="1_iqpyg"]
 [ext_resource type="Texture2D" uid="uid://dfowpqq6l5q6i" path="res://default_tile.png" id="1_ltsqr"]
 [ext_resource type="PackedScene" uid="uid://bcex1po31mx6j" path="res://components/camera/Camera.tscn" id="3_hfasd"]
-[ext_resource type="PackedScene" uid="uid://c5dj1vy0utmoj" path="res://entities/heart/heart.tscn" id="4_2aj5p"]
+[ext_resource type="PackedScene" uid="uid://c5dj1vy0utmoj" path="res://entities/heart/heart_small.tscn" id="4_2aj5p"]
+[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/heart/heart_big.tscn" id="4_bigheart"]
 [ext_resource type="Script" uid="uid://dpphbmq7t6nsy" path="res://components/pickups/pickup_spawner.gd" id="5_pickup_spawner"]
-[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/energy/energy.tscn" id="6_energy"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/energy/energy_small.tscn" id="6_energy"]
+[ext_resource type="PackedScene" uid="uid://bigenergy1a2b3" path="res://entities/energy/energy_big.tscn" id="6_energy_big"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
 texture = ExtResource("1_ltsqr")
@@ -32,5 +34,7 @@ target = NodePath("../Player")
 position = Vector2(0, 1)
 script = ExtResource("5_pickup_spawner")
 test_spawn_scene = ExtResource("4_2aj5p")
+test_spawn_scene_variant = ExtResource("4_bigheart")
 test_spawn_scene_b = ExtResource("6_energy")
+test_spawn_scene_b_variant = ExtResource("6_energy_big")
 test_spawn_count_b = 5
