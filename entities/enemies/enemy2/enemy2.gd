@@ -13,6 +13,8 @@ extends CharacterBody2D
 @onready var screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var damage_area: Area2D = $DamageArea
 
+var _has_been_seen: bool = false
+
 func _ready() -> void:
 	process_priority = 1
 	add_to_group("enemy")
@@ -24,7 +26,8 @@ func _ready() -> void:
 	if anim_player:
 		anim_player.play("default")
 	if screen_notifier and not Engine.is_editor_hint():
-		_set_active(screen_notifier.is_on_screen())
+		_has_been_seen = screen_notifier.is_on_screen()
+		_set_active(_has_been_seen)
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -80,7 +83,9 @@ func _on_damage_area_area_entered(area: Area2D) -> void:
 	area.queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	_has_been_seen = true
 	_set_active(true)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	_set_active(false)
+	if not _has_been_seen:
+		_set_active(false)
