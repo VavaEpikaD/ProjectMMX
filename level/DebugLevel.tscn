@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/energy/energy_big.tscn" id="6_energy_big"]
 [ext_resource type="PackedScene" path="res://entities/enemies/amogus/amogus.tscn" id="9_jf4by"]
 [ext_resource type="PackedScene" uid="uid://dprut3ym4lhdg" path="res://entities/enemies/enemy1/enemy1.tscn" id="10_1n8es"]
-[ext_resource type="PackedScene" path="res://entities/enemies/enemy2/enemy2.tscn" id="11_0cqh7"]
+[ext_resource type="PackedScene" uid="uid://b6ruskpjjdrn4" path="res://entities/enemies/enemy2/enemy2.tscn" id="11_0cqh7"]
+[ext_resource type="PackedScene" path="res://entities/enemies/enemy3/enemy3.tscn" id="12_kj3vk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
 texture = ExtResource("1_ltsqr")
@@ -52,9 +53,10 @@ position = Vector2(698, 208)
 
 [node name="Enemy1" parent="." unique_id=179847318 instance=ExtResource("10_1n8es")]
 position = Vector2(831, 195)
-facing_right = null
 
 [node name="Enemy2" parent="." unique_id=625429726 instance=ExtResource("11_0cqh7")]
-process_priority = 1
 position = Vector2(943, 198)
-gravity = 1200.0
+speed = 50.0
+
+[node name="Enemy3" parent="." unique_id=1887814967 instance=ExtResource("12_kj3vk")]
+position = Vector2(1063, 130)
