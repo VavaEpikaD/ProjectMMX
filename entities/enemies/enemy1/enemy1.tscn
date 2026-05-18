@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dprut3ym4lhdg"]
+
+[ext_resource type="Script" uid="uid://dj4rhfiu6qhry" path="res://entities/enemies/enemy1/enemy1.gd" id="1_enemy1_gd"]
+[ext_resource type="Texture2D" uid="uid://d0y0kxpdcjti1" path="res://assets/sprites/enemies/enemy1/enemy1_1.png" id="2_enemy1_1"]
+[ext_resource type="Texture2D" uid="uid://dtfg8uhuh6yus" path="res://assets/sprites/enemies/enemy1/enemy1_2.png" id="3_enemy1_2"]
+[ext_resource type="Texture2D" uid="uid://ipnu5bllylg3" path="res://assets/sprites/enemies/enemy1/enemy1_3.png" id="4_enemy1_3"]
+[ext_resource type="Texture2D" uid="uid://cpg61271w8uak" path="res://assets/sprites/enemies/enemy1/enemy1_4.png" id="5_enemy1_4"]
+[ext_resource type="Texture2D" uid="uid://d37sii5ipvdh3" path="res://assets/sprites/enemies/enemy1/enemy1_5.png" id="6_enemy1_5"]
+[ext_resource type="Texture2D" uid="uid://feqisqeckcmb" path="res://assets/sprites/enemies/enemy1/enemy1_6.png" id="7_enemy1_6"]
+[ext_resource type="Texture2D" uid="uid://y0fphilr4p3c" path="res://assets/sprites/enemies/enemy1/enemy1_7.png" id="8_enemy1_7"]
+[ext_resource type="Texture2D" uid="uid://41cv68dhmw5h" path="res://assets/sprites/enemies/enemy1/enemy1_8.png" id="9_enemy1_8"]
+[ext_resource type="Texture2D" uid="uid://ciskjiow4ubu8" path="res://assets/sprites/enemies/enemy1/enemy1_9.png" id="10_enemy1_9"]
+[ext_resource type="Texture2D" uid="uid://c8vool8nyom1s" path="res://assets/sprites/enemies/enemy1/enemy1_10.png" id="11_enemy1_10"]
+[ext_resource type="Texture2D" uid="uid://csriva84ai88j" path="res://assets/sprites/enemies/enemy1/enemy1_11.png" id="12_enemy1_11"]
+[ext_resource type="Texture2D" uid="uid://vt6sr6et6l4q" path="res://assets/sprites/enemies/enemy1/enemy1_12.png" id="13_enemy1_12"]
+
+[sub_resource type="Animation" id="Animation_enemy1_default"]
+resource_name = "default"
+length = 2.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_enemy1_1"), ExtResource("3_enemy1_2"), ExtResource("4_enemy1_3"), ExtResource("5_enemy1_4"), ExtResource("6_enemy1_5"), ExtResource("7_enemy1_6"), ExtResource("8_enemy1_7"), ExtResource("9_enemy1_8"), ExtResource("10_enemy1_9"), ExtResource("11_enemy1_10"), ExtResource("12_enemy1_11"), ExtResource("13_enemy1_12"), ExtResource("12_enemy1_11"), ExtResource("11_enemy1_10"), ExtResource("10_enemy1_9"), ExtResource("9_enemy1_8"), ExtResource("8_enemy1_7"), ExtResource("7_enemy1_6"), ExtResource("6_enemy1_5"), ExtResource("5_enemy1_4"), ExtResource("4_enemy1_3"), ExtResource("3_enemy1_2")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enemy1"]
+_data = {
+&"default": SubResource("Animation_enemy1_default")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy1"]
+size = Vector2(29, 44)
+
+[node name="Enemy1" type="Area2D" unique_id=1055681013]
+process_priority = 1
+script = ExtResource("1_enemy1_gd")
+facing_right = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2135272731]
+position = Vector2(21, 29)
+texture = ExtResource("3_enemy1_2")
+centered = false
+offset = Vector2(-42, -58)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1375012524]
+libraries/ = SubResource("AnimationLibrary_enemy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=339421699]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_enemy1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1011553000]
+position = Vector2(-14, -7)
+rect = Rect2(5, 0, 19, 16)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

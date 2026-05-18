@@ -8,6 +8,8 @@ extends Node2D
 @export var test_spawn_count: int = 5
 @export var test_spawn_count_b: int = 5
 @export var test_spawn_rect: Rect2 = Rect2(Vector2(0, 0), Vector2(640, 360))
+@export var spawn_in_camera_view: bool = false
+@export var camera_view_padding: Vector2 = Vector2.ZERO
 @export var randomize_variant: bool = true
 @export_range(0.0, 1.0, 0.05) var big_variant_chance: float = 0.5
 

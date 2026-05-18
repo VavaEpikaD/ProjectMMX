@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://entities/projectiles/enemy1/enemy1_projectile.gd" id="1_enemy1_projectile_gd"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/enemy1/projectile.png" id="2_enemy1_projectile_tex"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enemy1_projectile"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_enemy1_projectile_tex")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy1_projectile"]
+size = Vector2(8, 8)
+
+[node name="Enemy1Projectile" type="Area2D"]
+script = ExtResource("1_enemy1_projectile_gd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_enemy1_projectile")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_enemy1_projectile")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

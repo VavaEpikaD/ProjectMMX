@@ -20,6 +20,7 @@ size = Vector2(44, 28)
 [node name="Level1Charge" type="Area2D" unique_id=348490192]
 script = ExtResource("1_ya4rg")
 speed = 500.0
+damage = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=917368502]
 position = Vector2(-2.9802322e-08, -3.7252903e-09)
