@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cwmaln4ugcjgx"]
+
+[ext_resource type="Script" uid="uid://brwa3tf830evv" path="res://entities/pickups/weapon_energy/weapon_energy.gd" id="2_heartgd"]
+[ext_resource type="Texture2D" uid="uid://cbywasyjp4jro" path="res://assets/sprites/pickups/small_weapon_energy.png" id="2_wcf7c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu7wb"]
+atlas = ExtResource("2_wcf7c")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ondmq"]
+atlas = ExtResource("2_wcf7c")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gxq2"]
+atlas = ExtResource("2_wcf7c")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06asi"]
+atlas = ExtResource("2_wcf7c")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2a4aj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hu7wb")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ondmq")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1gxq2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ondmq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 50.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_06asi")
+}],
+"loop": false,
+"name": &"open",
+"speed": 50.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f32a7"]
+size = Vector2(10, 8.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcf7c"]
+size = Vector2(4, 8)
+
+[node name="WeaponEnergySmall" type="CharacterBody2D" unique_id=34629763]
+collision_layer = 4
+script = ExtResource("2_heartgd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438609313]
+sprite_frames = SubResource("SpriteFrames_2a4aj")
+animation = &"open"
+
+[node name="PickupCollision" type="Area2D" parent="." unique_id=1734178223]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollision" unique_id=1605204126]
+shape = SubResource("RectangleShape2D_f32a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1252455457]
+shape = SubResource("RectangleShape2D_wcf7c")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="PickupCollision" to="." method="_on_body_entered"]

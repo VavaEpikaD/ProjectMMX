@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://bw5x6dbss1byf" path="res://entities/player/player.tscn" id="1_iqpyg"]
 [ext_resource type="Texture2D" uid="uid://dfowpqq6l5q6i" path="res://default_tile.png" id="1_ltsqr"]
 [ext_resource type="PackedScene" uid="uid://bcex1po31mx6j" path="res://components/camera/Camera.tscn" id="3_hfasd"]
-[ext_resource type="PackedScene" path="res://entities/heart/heart_small.tscn" id="4_2aj5p"]
-[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/heart/heart_big.tscn" id="4_bigheart"]
+[ext_resource type="PackedScene" uid="uid://cwmaln4ugcjgx" path="res://entities/pickups/weapon_energy/weapon_energy_small.tscn" id="4_2aj5p"]
+[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/pickups/weapon_energy/weapon_energy_big.tscn" id="4_bigheart"]
 [ext_resource type="Script" uid="uid://dpphbmq7t6nsy" path="res://components/pickups/pickup_spawner.gd" id="5_pickup_spawner"]
-[ext_resource type="PackedScene" path="res://entities/energy/energy_small.tscn" id="6_energy"]
-[ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/energy/energy_big.tscn" id="6_energy_big"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/pickups/energy/energy_small.tscn" id="6_energy"]
+[ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/pickups/energy/energy_big.tscn" id="6_energy_big"]
 [ext_resource type="PackedScene" path="res://entities/enemies/amogus/amogus.tscn" id="9_jf4by"]
 [ext_resource type="PackedScene" uid="uid://dprut3ym4lhdg" path="res://entities/enemies/enemy1/enemy1.tscn" id="10_1n8es"]
 [ext_resource type="PackedScene" uid="uid://b6ruskpjjdrn4" path="res://entities/enemies/enemy2/enemy2.tscn" id="11_0cqh7"]
-[ext_resource type="PackedScene" path="res://entities/enemies/enemy3/enemy3.tscn" id="12_kj3vk"]
+[ext_resource type="PackedScene" uid="uid://bmgja8qsv5f7e" path="res://entities/enemies/enemy3/enemy3.tscn" id="12_kj3vk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqpyg"]
 texture = ExtResource("1_ltsqr")
@@ -60,3 +60,15 @@ speed = 50.0
 
 [node name="Enemy3" parent="." unique_id=1887814967 instance=ExtResource("12_kj3vk")]
 position = Vector2(1063, 130)
+
+[node name="Area2D" parent="." unique_id=1598977153 instance=ExtResource("6_energy_big")]
+position = Vector2(82, 145)
+
+[node name="Area2D2" parent="." unique_id=1320839163 instance=ExtResource("6_energy")]
+position = Vector2(61, 145)
+
+[node name="Area2D3" parent="." unique_id=321233510 instance=ExtResource("4_bigheart")]
+position = Vector2(152, 183)
+
+[node name="Area2D4" parent="." unique_id=92685114 instance=ExtResource("4_2aj5p")]
+position = Vector2(178, 181)

@@ -20,8 +20,8 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @export var jump_buffer_time: float = 0.1
 @export var max_health: int = 10
 @export var health: int = 10
-@export var max_energy: int = 5
-@export var energy: int = 5
+@export var max_weapon_energy: int = 5
+@export var weapon_energy: int = 5
 @export var wall_slide_shoot_orientation_delay: bool = false
 @export var invincibility_duration: float = 1.0
 
@@ -32,7 +32,7 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 func _ready() -> void:
 	add_to_group("player")
 	health = clamp(health, 0, max_health)
-	energy = clamp(energy, 0, max_energy)
+	weapon_energy = clamp(weapon_energy, 0, max_weapon_energy)
 
 func update_muzzle() -> void:
 	$Muzzle.position.x = -abs($Muzzle.position.x) if $Sprite2D.flip_h else abs($Muzzle.position.x)
@@ -113,15 +113,15 @@ func take_damage(amount: int) -> void:
 	if health == 0:
 		queue_free()
 
-func heal(amount: int) -> void:
+func add_health(amount: int) -> void:
 	if amount <= 0:
 		return
 	health = clamp(health + amount, 0, max_health)
 
-func add_energy(amount: int) -> void:
+func add_weapon_energy(amount: int) -> void:
 	if amount <= 0:
 		return
-	energy = clamp(energy + amount, 0, max_energy)
+	weapon_energy = clamp(weapon_energy + amount, 0, max_weapon_energy)
 
 func shoot(charge_level: int) -> void:
 	var bullets = get_tree().get_nodes_in_group("player_bullet")

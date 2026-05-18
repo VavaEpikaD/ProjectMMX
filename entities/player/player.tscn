@@ -411,6 +411,7 @@ size = Vector2(16, 34)
 
 [node name="Player" type="CharacterBody2D" unique_id=1769268742]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_symyc")
 
 [node name="MovementStateMachine" type="Node2D" parent="." unique_id=28073974 node_paths=PackedStringArray("initial_state")]
