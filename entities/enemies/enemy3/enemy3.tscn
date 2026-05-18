@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bmgja8qsv5f7e"]
+
+[ext_resource type="Script" uid="uid://df7u1iun6da4n" path="res://entities/enemies/enemy3/enemy3.gd" id="1_enemy3_gd"]
+[ext_resource type="PackedScene" path="res://entities/projectiles/enemy3/enemy3_basic_bullet.tscn" id="2_8kk6a"]
+[ext_resource type="Texture2D" uid="uid://bmjpxitqwrgol" path="res://assets/sprites/enemies/enemy3/enemy3_0.png" id="2_enemy3_0"]
+[ext_resource type="Texture2D" uid="uid://ihvsqlajst5o" path="res://assets/sprites/enemies/enemy3/enemy3_1.png" id="3_enemy3_1"]
+[ext_resource type="PackedScene" path="res://entities/projectiles/enemy3/enemy3_gravity_bullet.tscn" id="3_n3r2y"]
+[ext_resource type="Texture2D" uid="uid://bn5o1usjbdjtj" path="res://assets/sprites/enemies/enemy3/enemy3_2.png" id="4_enemy3_2"]
+[ext_resource type="Texture2D" uid="uid://do07rcyttyfi6" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_0.png" id="5_enemy3_s0"]
+[ext_resource type="Texture2D" uid="uid://db3cqggy4vqmb" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_1.png" id="6_enemy3_s1"]
+[ext_resource type="Texture2D" uid="uid://chi6mppydqio6" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_2.png" id="7_enemy3_s2"]
+
+[sub_resource type="Animation" id="Animation_enemy3_gravity"]
+resource_name = "gravity"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_enemy3_0"), ExtResource("3_enemy3_1"), ExtResource("4_enemy3_2")]
+}
+
+[sub_resource type="Animation" id="Animation_enemy3_shooting"]
+resource_name = "shooting"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_enemy3_s0"), ExtResource("6_enemy3_s1"), ExtResource("7_enemy3_s2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enemy3"]
+_data = {
+&"gravity": SubResource("Animation_enemy3_gravity"),
+&"shooting": SubResource("Animation_enemy3_shooting")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy3"]
+size = Vector2(92.5, 72)
+
+[node name="Enemy3" type="Area2D" unique_id=1094399560]
+process_priority = 1
+script = ExtResource("1_enemy3_gd")
+normal_bullet_scene = ExtResource("2_8kk6a")
+gravity_bullet_scene = ExtResource("3_n3r2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=644517180]
+texture = ExtResource("6_enemy3_s1")
+
+[node name="ShootPointNormal" type="Marker2D" parent="." unique_id=944244369]
+position = Vector2(-41, 27)
+
+[node name="ShootPointGravity" type="Marker2D" parent="." unique_id=68308244]
+position = Vector2(-15, 14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1936285520]
+libraries/ = SubResource("AnimationLibrary_enemy3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354346011]
+position = Vector2(-0.25, -1)
+shape = SubResource("RectangleShape2D_enemy3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1701408505]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

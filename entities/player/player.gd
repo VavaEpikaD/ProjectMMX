@@ -8,6 +8,7 @@ var terminal_velocity: float = -400
 var wall_jump_lockout_timer: float = 0.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
+var invincibility_timer: float = 0.0
 
 var lemon_scene: PackedScene = preload("res://entities/projectiles/buster/lemon.tscn")
 var charge_1_scene = preload("res://entities/projectiles/buster/level1_charge.tscn")
@@ -22,6 +23,7 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @export var max_energy: int = 5
 @export var energy: int = 5
 @export var wall_slide_shoot_orientation_delay: bool = false
+@export var invincibility_duration: float = 1.0
 
 @onready var movement_sm: StateMachine = $MovementStateMachine
 @onready var action_sm: StateMachine = $ActionStateMachine
@@ -51,6 +53,8 @@ func _hanle_jump_timers(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_hanle_jump_timers(delta)
+	if invincibility_timer > 0.0:
+		invincibility_timer = max(invincibility_timer - delta, 0.0)
 
 	if not is_on_floor():
 		var applied_gravity: float = gravity
@@ -97,6 +101,17 @@ func update_animations() -> void:
 func consume_jump() -> void:
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
+
+func take_damage(amount: int) -> void:
+	if amount <= 0:
+		return
+	if invincibility_timer > 0.0:
+		return
+	health = clamp(health - amount, 0, max_health)
+	print("Player took damage: ", amount, " health: ", health, "/", max_health)
+	invincibility_timer = invincibility_duration
+	if health == 0:
+		queue_free()
 
 func heal(amount: int) -> void:
 	if amount <= 0:

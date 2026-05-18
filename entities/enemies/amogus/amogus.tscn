@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://entities/enemies/amogus/amogus.gd" id="1_amogus_gd"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-1.png" id="2_amogus1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-2.png" id="3_amogus2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-3.png" id="4_amogus3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-4.png" id="5_amogus4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-1.png" id="6_amogus_run1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-2.png" id="7_amogus_run2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-3.png" id="8_amogus_run3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-4.png" id="9_amogus_run4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amogus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_amogus1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_amogus2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_amogus3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_amogus4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_amogus_run1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_amogus_run2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_amogus_run3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_amogus_run4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amogus"]
+size = Vector2(14, 16)
+
+[node name="Amogus" type="Area2D"]
+script = ExtResource("1_amogus_gd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_amogus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_amogus")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
