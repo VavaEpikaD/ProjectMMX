@@ -1,23 +1,24 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b6w7kxjefo7bn"]
 
-[ext_resource type="Script" path="res://entities/projectiles/enemy3/enemy3_gravity_bullet.gd" id="1_enemy3_gravity_gd"]
-[ext_resource type="Texture2D" path="res://assets/sprites/enemies/enemy3/gravity_bullet_1.png" id="2_enemy3_gravity_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/enemies/enemy3/gravity_bullet_2.png" id="3_enemy3_gravity_2"]
+[ext_resource type="Script" uid="uid://dw3ut42gxyu8o" path="res://entities/projectiles/enemy3/enemy3_gravity_bullet.gd" id="1_enemy3_gravity_gd"]
+[ext_resource type="Texture2D" uid="uid://b0k5javmrb8n0" path="res://assets/sprites/enemies/enemy3/gravity_bullet_1.png" id="2_enemy3_gravity_1"]
+[ext_resource type="Texture2D" uid="uid://dhjq30yroqfc4" path="res://assets/sprites/enemies/enemy3/gravity_bullet_2.png" id="3_enemy3_gravity_2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy3_gravity"]
 size = Vector2(8, 8)
 
-[node name="Enemy3GravityBullet" type="Area2D"]
+[node name="Enemy3GravityBullet" type="Area2D" unique_id=877756756]
+collision_mask = 3
 script = ExtResource("1_enemy3_gravity_gd")
 fall_texture = ExtResource("3_enemy3_gravity_2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1604645228]
 texture = ExtResource("2_enemy3_gravity_1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1759733114]
 shape = SubResource("RectangleShape2D_enemy3_gravity")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1308066979]
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -56,14 +56,16 @@ size = Vector2(29, 44)
 
 [node name="Enemy1" type="Area2D" unique_id=1055681013]
 process_priority = 1
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_enemy1_gd")
 facing_right = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2135272731]
 position = Vector2(21, 29)
-texture = ExtResource("3_enemy1_2")
+texture = ExtResource("6_enemy1_5")
 centered = false
-offset = Vector2(-42, -58)
+offset = Vector2(-44, -48)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1375012524]
 libraries/ = SubResource("AnimationLibrary_enemy1")

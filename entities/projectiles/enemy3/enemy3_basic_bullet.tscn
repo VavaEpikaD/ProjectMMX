@@ -1,21 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ccqkh2brvbqu7"]
 
-[ext_resource type="Script" path="res://entities/projectiles/enemy3/enemy3_basic_bullet.gd" id="1_enemy3_basic_gd"]
-[ext_resource type="Texture2D" path="res://assets/sprites/enemies/enemy3/basic_bullet.png" id="2_enemy3_basic_tex"]
+[ext_resource type="Script" uid="uid://drff11h0ithvv" path="res://entities/projectiles/enemy3/enemy3_basic_bullet.gd" id="1_enemy3_basic_gd"]
+[ext_resource type="Texture2D" uid="uid://dw4e8mmowaj0o" path="res://assets/sprites/enemies/enemy3/basic_bullet.png" id="2_enemy3_basic_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy3_basic"]
 size = Vector2(8, 8)
 
-[node name="Enemy3BasicBullet" type="Area2D"]
+[node name="Enemy3BasicBullet" type="Area2D" unique_id=1201745583]
+collision_mask = 3
 script = ExtResource("1_enemy3_basic_gd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1390175137]
 texture = ExtResource("2_enemy3_basic_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818951044]
 shape = SubResource("RectangleShape2D_enemy3_basic")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=240140318]
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

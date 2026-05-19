@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bmgja8qsv5f7e"]
 
 [ext_resource type="Script" uid="uid://df7u1iun6da4n" path="res://entities/enemies/enemy3/enemy3.gd" id="1_enemy3_gd"]
-[ext_resource type="PackedScene" path="res://entities/projectiles/enemy3/enemy3_basic_bullet.tscn" id="2_8kk6a"]
+[ext_resource type="PackedScene" uid="uid://ccqkh2brvbqu7" path="res://entities/projectiles/enemy3/enemy3_basic_bullet.tscn" id="2_8kk6a"]
 [ext_resource type="Texture2D" uid="uid://bmjpxitqwrgol" path="res://assets/sprites/enemies/enemy3/enemy3_0.png" id="2_enemy3_0"]
 [ext_resource type="Texture2D" uid="uid://ihvsqlajst5o" path="res://assets/sprites/enemies/enemy3/enemy3_1.png" id="3_enemy3_1"]
-[ext_resource type="PackedScene" path="res://entities/projectiles/enemy3/enemy3_gravity_bullet.tscn" id="3_n3r2y"]
+[ext_resource type="PackedScene" uid="uid://b6w7kxjefo7bn" path="res://entities/projectiles/enemy3/enemy3_gravity_bullet.tscn" id="3_n3r2y"]
 [ext_resource type="Texture2D" uid="uid://bn5o1usjbdjtj" path="res://assets/sprites/enemies/enemy3/enemy3_2.png" id="4_enemy3_2"]
 [ext_resource type="Texture2D" uid="uid://do07rcyttyfi6" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_0.png" id="5_enemy3_s0"]
 [ext_resource type="Texture2D" uid="uid://db3cqggy4vqmb" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_1.png" id="6_enemy3_s1"]
@@ -57,6 +57,8 @@ size = Vector2(92.5, 72)
 
 [node name="Enemy3" type="Area2D" unique_id=1094399560]
 process_priority = 1
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_enemy3_gd")
 normal_bullet_scene = ExtResource("2_8kk6a")
 gravity_bullet_scene = ExtResource("3_n3r2y")

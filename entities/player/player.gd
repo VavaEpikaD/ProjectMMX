@@ -29,6 +29,10 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @onready var action_sm: StateMachine = $ActionStateMachine
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
+# Blinking Variables
+var blink_timer: float = 0.0
+var blink_base_time: float = 0.05 # Determines how fast the player blinks
+
 func _ready() -> void:
 	add_to_group("player")
 	health = clamp(health, 0, max_health)
@@ -53,6 +57,7 @@ func _hanle_jump_timers(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_hanle_jump_timers(delta)
+	
 	if invincibility_timer > 0.0:
 		invincibility_timer = max(invincibility_timer - delta, 0.0)
 
@@ -75,7 +80,18 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if movement_sm.current_state:
 		movement_sm.update(delta)
-	
+		
+	# Handle Invincibility Blinking
+	if invincibility_timer > 0.0:
+		blink_timer -= delta
+		if blink_timer <= 0.0:
+			$Sprite2D.visible = not $Sprite2D.visible
+			blink_timer = blink_base_time
+	else:
+		# Ensure the sprite is visible when invincibility ends
+		if not $Sprite2D.visible:
+			$Sprite2D.visible = true
+		
 func update_animations() -> void:
 	var current_movement: String = movement_sm.current_state.name.to_lower()
 
@@ -107,9 +123,15 @@ func take_damage(amount: int) -> void:
 		return
 	if invincibility_timer > 0.0:
 		return
+		
 	health = clamp(health - amount, 0, max_health)
 	print("Player took damage: ", amount, " health: ", health, "/", max_health)
+	
+	# Trigger invincibility and first blink
 	invincibility_timer = invincibility_duration
+	blink_timer = blink_base_time
+	$Sprite2D.visible = false
+	
 	if health == 0:
 		queue_free()
 
@@ -146,14 +168,8 @@ func shoot(charge_level: int) -> void:
 		facing_right = not facing_right
 		$Muzzle.position.x *= -1
 		
-	
 	b.global_position = muzzle.global_position
 	
-	
-	
-	#if scale.x < 0:
-		#print("lmao")
-		#facing_right = not facing_right
 	var dir: Vector2 = Vector2.RIGHT if facing_right else Vector2.LEFT
 	
 	b.launch(dir)

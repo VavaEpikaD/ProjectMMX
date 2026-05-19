@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cttqxbsxahvf5"
-path="res://.godot/imported/heart1.png-5952c948b2d2b5d4e91117b31fd6c99d.ctex"
+uid="uid://jylql8r1wna2"
+path="res://.godot/imported/diagrama_de_clase.png-88ef744b6a8adfa00517748d816fd780.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bullets/basic_bullet/heart1.png"
-dest_files=["res://.godot/imported/heart1.png-5952c948b2d2b5d4e91117b31fd6c99d.ctex"]
+source_file="res://docs/diagrama_de_clase.png"
+dest_files=["res://.godot/imported/diagrama_de_clase.png-88ef744b6a8adfa00517748d816fd780.ctex"]
 
 [params]
 
