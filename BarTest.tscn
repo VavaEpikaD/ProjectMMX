@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dabp3mduqufmk"]
+
+[ext_resource type="PackedScene" uid="uid://b3koy20vtbh0p" path="res://components/ui/bars/Bar.tscn" id="1_fobbo"]
+[ext_resource type="PackedScene" uid="uid://yrqpy62oww1e" path="res://components/ui/bars/WeaponBar.tscn" id="2_62us0"]
+
+[node name="BarTest" type="Node2D" unique_id=1615767798]
+
+[node name="Bar" parent="." unique_id=1935139003 instance=ExtResource("1_fobbo")]
+
+[node name="Bar2" parent="." unique_id=1776382813 instance=ExtResource("2_62us0")]
+offset_left = 9.0
+offset_top = 14.0
+offset_right = 58.0
+offset_bottom = 25.0
