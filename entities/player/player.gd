@@ -35,6 +35,7 @@ var blink_base_time: float = 0.05 # Determines how fast the player blinks
 
 signal health_changed(current_hp: int)
 signal max_health_changed(max_hp: int)
+signal died
 
 func _ready() -> void:
 	add_to_group("player")
@@ -141,6 +142,7 @@ func take_damage(amount: int) -> void:
 	health_changed.emit(health)
 	
 	if health == 0:
+		died.emit()
 		queue_free()
 
 func add_health(amount: int) -> void:
