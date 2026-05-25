@@ -16,6 +16,7 @@ extends Node2D
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	add_to_group("pickup_spawner")
 	_rng.randomize()
 	if not test_spawn_enabled:
 		return
