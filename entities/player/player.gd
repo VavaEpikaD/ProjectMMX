@@ -18,10 +18,10 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @export var short_hop_gravity_multiplier: float = 3.5 # Yanks the player down if they release jump
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
-@export var max_health: int = 10
-@export var health: int = 10
-@export var max_weapon_energy: int = 5
-@export var weapon_energy: int = 5
+@export var max_health: int = 16
+@export var health: int = 16
+@export var max_weapon_energy: int = 30
+@export var weapon_energy: int = 30
 @export var wall_slide_shoot_orientation_delay: bool = false
 @export var invincibility_duration: float = 1.0
 
@@ -33,10 +33,16 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 var blink_timer: float = 0.0
 var blink_base_time: float = 0.05 # Determines how fast the player blinks
 
+signal health_changed(current_hp: int)
+signal max_health_changed(max_hp: int)
+
 func _ready() -> void:
 	add_to_group("player")
 	health = clamp(health, 0, max_health)
 	weapon_energy = clamp(weapon_energy, 0, max_weapon_energy)
+	
+	health_changed.emit(health)
+	max_health_changed.emit(max_health)
 
 func update_muzzle() -> void:
 	$Muzzle.position.x = -abs($Muzzle.position.x) if $Sprite2D.flip_h else abs($Muzzle.position.x)
@@ -132,6 +138,8 @@ func take_damage(amount: int) -> void:
 	blink_timer = blink_base_time
 	$Sprite2D.visible = false
 	
+	health_changed.emit(health)
+	
 	if health == 0:
 		queue_free()
 
@@ -139,6 +147,7 @@ func add_health(amount: int) -> void:
 	if amount <= 0:
 		return
 	health = clamp(health + amount, 0, max_health)
+	health_changed.emit(health)
 
 func add_weapon_energy(amount: int) -> void:
 	if amount <= 0:
