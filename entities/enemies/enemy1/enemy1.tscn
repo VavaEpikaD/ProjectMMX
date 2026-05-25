@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://c8vool8nyom1s" path="res://assets/sprites/enemies/enemy1/enemy1_10.png" id="11_enemy1_10"]
 [ext_resource type="Texture2D" uid="uid://csriva84ai88j" path="res://assets/sprites/enemies/enemy1/enemy1_11.png" id="12_enemy1_11"]
 [ext_resource type="Texture2D" uid="uid://vt6sr6et6l4q" path="res://assets/sprites/enemies/enemy1/enemy1_12.png" id="13_enemy1_12"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/pickups/energy/energy_small.tscn" id="14_energy_small"]
+[ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/pickups/energy/energy_big.tscn" id="15_energy_big"]
+[ext_resource type="PackedScene" uid="uid://cwmaln4ugcjgx" path="res://entities/pickups/weapon_energy/weapon_energy_small.tscn" id="16_weapon_small"]
+[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/pickups/weapon_energy/weapon_energy_big.tscn" id="17_weapon_big"]
 
 [sub_resource type="Animation" id="Animation_enemy1_default"]
 resource_name = "default"
@@ -60,6 +64,9 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_enemy1_gd")
 facing_right = false
+drop_chance = 0.35
+drop_scenes = [ExtResource("14_energy_small"), ExtResource("15_energy_big"), ExtResource("16_weapon_small"), ExtResource("17_weapon_big")]
+drop_weights = [0.45, 0.2, 0.25, 0.1]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2135272731]
 position = Vector2(21, 29)

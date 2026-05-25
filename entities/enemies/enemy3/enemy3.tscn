@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://do07rcyttyfi6" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_0.png" id="5_enemy3_s0"]
 [ext_resource type="Texture2D" uid="uid://db3cqggy4vqmb" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_1.png" id="6_enemy3_s1"]
 [ext_resource type="Texture2D" uid="uid://chi6mppydqio6" path="res://assets/sprites/enemies/enemy3/enemy3_shooting_2.png" id="7_enemy3_s2"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/pickups/energy/energy_small.tscn" id="8_energy_small"]
+[ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/pickups/energy/energy_big.tscn" id="9_energy_big"]
+[ext_resource type="PackedScene" uid="uid://cwmaln4ugcjgx" path="res://entities/pickups/weapon_energy/weapon_energy_small.tscn" id="10_weapon_small"]
+[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/pickups/weapon_energy/weapon_energy_big.tscn" id="11_weapon_big"]
 
 [sub_resource type="Animation" id="Animation_enemy3_gravity"]
 resource_name = "gravity"
@@ -62,6 +66,9 @@ collision_mask = 3
 script = ExtResource("1_enemy3_gd")
 normal_bullet_scene = ExtResource("2_8kk6a")
 gravity_bullet_scene = ExtResource("3_n3r2y")
+drop_chance = 0.35
+drop_scenes = [ExtResource("8_energy_small"), ExtResource("9_energy_big"), ExtResource("10_weapon_small"), ExtResource("11_weapon_big")]
+drop_weights = [0.45, 0.2, 0.25, 0.1]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=644517180]
 texture = ExtResource("6_enemy3_s1")

@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-2.png" id="7_amogus_run2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-3.png" id="8_amogus_run3"]
 [ext_resource type="Texture2D" path="res://assets/sprites/amogus/amogus-run-4.png" id="9_amogus_run4"]
+[ext_resource type="PackedScene" uid="uid://cqwkaiogq6tww" path="res://entities/pickups/energy/energy_small.tscn" id="10_energy_small"]
+[ext_resource type="PackedScene" uid="uid://dsbxh7aheabqg" path="res://entities/pickups/energy/energy_big.tscn" id="11_energy_big"]
+[ext_resource type="PackedScene" uid="uid://cwmaln4ugcjgx" path="res://entities/pickups/weapon_energy/weapon_energy_small.tscn" id="12_weapon_small"]
+[ext_resource type="PackedScene" uid="uid://bighrt1g2c3d4" path="res://entities/pickups/weapon_energy/weapon_energy_big.tscn" id="13_weapon_big"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_amogus"]
 animations = [{
@@ -52,6 +56,9 @@ size = Vector2(14, 16)
 
 [node name="Amogus" type="Area2D"]
 script = ExtResource("1_amogus_gd")
+drop_chance = 0.35
+drop_scenes = [ExtResource("10_energy_small"), ExtResource("11_energy_big"), ExtResource("12_weapon_small"), ExtResource("13_weapon_big")]
+drop_weights = [0.45, 0.2, 0.25, 0.1]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_amogus")

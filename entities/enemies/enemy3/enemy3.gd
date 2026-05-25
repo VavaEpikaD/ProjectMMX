@@ -13,6 +13,10 @@ extends Area2D
 @export var gravity_state_duration: float = 2.5
 @export var bob_amplitude: float = 12.0
 @export var bob_speed: float = 2.0
+@export var drop_chance: float = 0.25
+@export var drop_scenes: Array[PackedScene] = []
+@export var drop_weights: Array[float] = []
+@export var drop_offset: Vector2 = Vector2.ZERO
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -26,11 +30,13 @@ var _state_timer: float = 0.0
 var _shoot_timer: float = 0.0
 var _bob_time: float = 0.0
 var _base_pos: Vector2 = Vector2.ZERO
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	process_priority = 1
 	add_to_group("enemy")
 	health = clamp(health, 0, max_health)
+	_rng.randomize()
 	_base_pos = position
 	if not normal_bullet_scene:
 		normal_bullet_scene = load("res://entities/projectiles/enemy3/enemy3_basic_bullet.tscn") as PackedScene
@@ -60,6 +66,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	_try_drop_pickup()
 	queue_free()
 
 func _set_state(state: Enemy3State) -> void:
@@ -105,6 +112,43 @@ func _add_to_scene(node: Node) -> void:
 	else:
 		get_tree().get_root().add_child(node)
 
+func _try_drop_pickup() -> void:
+	if Engine.is_editor_hint():
+		return
+	if drop_scenes.is_empty() or drop_chance <= 0.0:
+		return
+	if _rng.randf() > drop_chance:
+		return
+	var index = _pick_weighted_index()
+	if index < 0:
+		return
+	var pickup_scene = drop_scenes[index]
+	if pickup_scene == null:
+		return
+	var spawner = _get_pickup_spawner()
+	if spawner and spawner.has_method("spawn_pickup"):
+		spawner.spawn_pickup(pickup_scene, global_position + drop_offset)
+
+func _pick_weighted_index() -> int:
+	var total := 0.0
+	for i in range(drop_scenes.size()):
+		var weight = 1.0
+		if i < drop_weights.size():
+			weight = max(drop_weights[i], 0.0)
+		total += weight
+	if total <= 0.0:
+		return -1
+	var roll = _rng.randf() * total
+	var accum := 0.0
+	for i in range(drop_scenes.size()):
+		var weight = 1.0
+		if i < drop_weights.size():
+			weight = max(drop_weights[i], 0.0)
+		accum += weight
+		if roll <= accum:
+			return i
+	return drop_scenes.size() - 1
+
 func _set_active(active: bool) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -116,6 +160,9 @@ func _set_active(active: bool) -> void:
 			anim_player.play("shooting" if _state == Enemy3State.NORMAL else "gravity")
 		else:
 			anim_player.stop()
+
+func _get_pickup_spawner() -> Node:
+	return get_tree().get_first_node_in_group("pickup_spawner")
 
 func _on_area_entered(area: Area2D) -> void:
 	if not area.is_in_group("player_bullet"):
