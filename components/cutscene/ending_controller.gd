@@ -6,7 +6,7 @@ extends Node2D
 @export var walk_duration: float = 3.0
 @export var walk_direction: Vector2 = Vector2.RIGHT
 @export var camera_path: NodePath = NodePath("../Camera")
-@export var camera_center: Vector2 = Vector2(1335, 183)
+@export var camera_center: Vector2 = Vector2(2420, -1149)
 @export var camera_center_duration: float = 0.5
 @export var teleport_duration: float = 0.6
 @export var pre_teleport_pause: float = 0.5
