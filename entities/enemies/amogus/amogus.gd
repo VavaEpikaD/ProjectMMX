@@ -1,5 +1,8 @@
 extends Area2D
 
+const BURN_EFFECT_SCENE := preload("res://entities/special_weapon/burn_effect.tscn")
+const BURN_EFFECT_NODE_NAME := "BurnEffect"
+
 @export var max_health: int = 3
 @export var health: int = 3
 @export var drop_chance: float = 0.25
@@ -35,7 +38,48 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.has_method("get_damage"):
 		damage = area.get_damage()
 	take_damage(damage)
+	if area.is_in_group("special_weapon"):
+		_show_burn_effect()
 	area.queue_free()
+
+func _show_burn_effect() -> void:
+	if not BURN_EFFECT_SCENE:
+		return
+	var target_node: Node2D = anim_sprite if anim_sprite else self
+	if target_node.has_node(BURN_EFFECT_NODE_NAME):
+		return
+	var effect = BURN_EFFECT_SCENE.instantiate() as Node2D
+	if not effect:
+		return
+	effect.name = BURN_EFFECT_NODE_NAME
+	target_node.add_child(effect)
+	var target_size = _get_visual_size(target_node)
+	effect.position = _get_visual_center(target_node, target_size)
+	if effect.has_method("start"):
+		effect.start(self, target_size)
+	elif effect.has_method("set_target_size"):
+		effect.set_target_size(target_size)
+
+func _get_visual_size(target: Node2D) -> Vector2:
+	if target is Sprite2D:
+		var tex = target.texture
+		if tex:
+			return tex.get_size()
+	if target is AnimatedSprite2D:
+		var frames = target.sprite_frames
+		var anim_name = target.animation
+		if frames and anim_name != "" and frames.has_animation(anim_name):
+			var tex = frames.get_frame_texture(anim_name, 0)
+			if tex:
+				return tex.get_size()
+	return Vector2(16, 16)
+
+func _get_visual_center(target: Node2D, size: Vector2) -> Vector2:
+	if target is Sprite2D:
+		return target.offset if target.centered else target.offset + size * 0.5
+	if target is AnimatedSprite2D:
+		return target.offset if target.centered else target.offset + size * 0.5
+	return Vector2.ZERO
 
 func _try_drop_pickup() -> void:
 	if Engine.is_editor_hint():
