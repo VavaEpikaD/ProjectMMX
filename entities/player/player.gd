@@ -153,6 +153,7 @@ func add_weapon_energy(amount: int) -> void:
 	if amount <= 0:
 		return
 	weapon_energy = clamp(weapon_energy + amount, 0, max_weapon_energy)
+	
 
 func shoot(charge_level: int) -> void:
 	var bullets = get_tree().get_nodes_in_group("player_bullet")
