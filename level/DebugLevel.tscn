@@ -38,7 +38,6 @@ script = ExtResource("1_enhgw")
 [node name="Bar" parent="UI" unique_id=1935139003 instance=ExtResource("1_dq6dm")]
 
 [node name="Bar2" parent="UI" unique_id=1776382813 instance=ExtResource("2_enhgw")]
-visible = false
 
 [node name="Player" parent="." unique_id=1769268742 instance=ExtResource("1_iqpyg")]
 position = Vector2(33, 207)
