@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bw5x6dbss1byf"]
 
 [ext_resource type="Script" uid="uid://cv04xrsni2hr" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="Script" uid="uid://bowudqw8x65yi" path="res://entities/player/effects/charge_anim_manager.gd" id="2_afbqv"]
 [ext_resource type="Script" uid="uid://c8dag41hr5ae4" path="res://entities/utils/state_machine.gd" id="2_sglur"]
 [ext_resource type="Script" uid="uid://p6enfdwe3ifr" path="res://entities/player/states/run_state.gd" id="3_bls4j"]
 [ext_resource type="Script" uid="uid://daga3larr3p5v" path="res://entities/player/states/idle_state.gd" id="4_8fjmc"]
@@ -11,6 +12,8 @@
 [ext_resource type="Script" uid="uid://djhh8nn7ysjmu" path="res://entities/player/states/wall_slide_state.gd" id="8_wvtmh"]
 [ext_resource type="Script" uid="uid://bil087qigtat8" path="res://entities/player/states/wall_jump_state.gd" id="9_7thud"]
 [ext_resource type="Texture2D" uid="uid://bq60m4cgmc3u3" path="res://assets/sprites/x/x_base.png" id="10_wvtmh"]
+[ext_resource type="Shader" uid="uid://c703p2c6vksp3" path="res://entities/player/player.gdshader" id="11_a1qjk"]
+[ext_resource type="Texture2D" uid="uid://fccnp7s2tc8i" path="res://assets/palettes/default.png" id="12_j3ovn"]
 
 [sub_resource type="Animation" id="Animation_j3ovn"]
 length = 0.001
@@ -418,6 +421,10 @@ _data = {
 &"wallslide_shoot": SubResource("Animation_a1qjk_shoot")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3ovn"]
+shader = ExtResource("11_a1qjk")
+shader_parameter/palette = ExtResource("12_j3ovn")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkugw"]
 size = Vector2(16, 34)
 
@@ -458,6 +465,7 @@ script = ExtResource("4_bls4j")
 libraries/ = SubResource("AnimationLibrary_qiwj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509726734]
+material = SubResource("ShaderMaterial_j3ovn")
 texture = ExtResource("10_wvtmh")
 hframes = 14
 vframes = 17
@@ -468,3 +476,7 @@ shape = SubResource("RectangleShape2D_fkugw")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=356170028]
 position = Vector2(23, -1)
+
+[node name="ChargeAnims" type="Node2D" parent="." unique_id=623972299]
+z_index = 2
+script = ExtResource("2_afbqv")

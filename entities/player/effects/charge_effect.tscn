@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cnqlkm5n6jmqk"]
+
+[ext_resource type="SpriteFrames" uid="uid://b5v1lpaf7ek4m" path="res://entities/player/effects/Charge1.tres" id="1_frames"]
+[ext_resource type="Script" uid="uid://diextp488bju" path="res://entities/player/effects/charge_effect.gd" id="2_script"]
+
+[node name="ChargeEffect" type="AnimatedSprite2D" unique_id=1099403347]
+sprite_frames = ExtResource("1_frames")
+frame = 5
+frame_progress = 1.0
+script = ExtResource("2_script")

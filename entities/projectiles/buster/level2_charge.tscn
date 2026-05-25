@@ -2,6 +2,27 @@
 
 [ext_resource type="Script" uid="uid://mpvy0qmhc8f0" path="res://entities/projectiles/buster/lemon.gd" id="1_jugky"]
 [ext_resource type="Texture2D" uid="uid://bss3egqn18rts" path="res://assets/sprites/projectiles/buster/level2_temp.png" id="2_jugky"]
+[ext_resource type="Texture2D" uid="uid://duvmxoyl87f60" path="res://assets/sprites/projectiles/buster/level2.png" id="3_jx5um"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aokpf"]
+atlas = ExtResource("3_jx5um")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdat5"]
+atlas = ExtResource("3_jx5um")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruk2b"]
+atlas = ExtResource("3_jx5um")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx5um"]
+atlas = ExtResource("3_jx5um")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa42x"]
+atlas = ExtResource("3_jx5um")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_53vpi"]
 animations = [{
@@ -12,6 +33,31 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_aokpf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_pdat5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruk2b")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx5um")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_wa42x")
+}],
+"loop": false,
+"name": &"shoot_start",
+"speed": 24.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25cl0"]
@@ -21,6 +67,7 @@ size = Vector2(50, 38)
 script = ExtResource("1_jugky")
 speed = 500.0
 damage = 3
+level = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=917368502]
 position = Vector2(-2.9802322e-08, -3.7252903e-09)
@@ -32,4 +79,5 @@ shape = SubResource("RectangleShape2D_25cl0")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1534542373]
 rect = Rect2(-27, -21, 54, 42)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
