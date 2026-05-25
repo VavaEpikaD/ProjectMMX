@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://c1chargeframes2"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b5v1lpaf7ek4n"]
 
-[ext_resource type="Texture2D" uid="uid://c1charge2tex" path="res://assets/effects/player/charge/charge2.png" id="1_charge2"]
+[ext_resource type="Texture2D" uid="uid://o246fe0dqp6r" path="res://assets/effects/player/charge/charge2.png" id="1_charge2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1"]
 atlas = ExtResource("1_charge2")
@@ -65,4 +65,3 @@ animations = [{
 "name": &"default",
 "speed": 50.0
 }]
-
