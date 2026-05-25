@@ -1,6 +1,6 @@
 extends Control
 
-@export var level_scene: PackedScene = preload("res://level/DebugLevel.tscn")
+@export var level_scene: PackedScene = preload("res://level/level1.tscn")
 
 @onready var play_button: Button = $VBoxContainer/PlayButton
 @onready var exit_button: Button = $VBoxContainer/ExitButton

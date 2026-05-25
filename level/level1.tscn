@@ -180,6 +180,8 @@ speed = 50.0
 
 [node name="Enemy3" parent="." unique_id=1887814967 instance=ExtResource("32_vusgj")]
 position = Vector2(1085, -505)
+max_health = 3
+health = 3
 
 [node name="EndingController" type="Node2D" parent="." unique_id=705265609]
 position = Vector2(1357, -819)
@@ -239,9 +241,13 @@ position = Vector2(1840, -956)
 
 [node name="Enemy12" parent="." unique_id=1094399560 instance=ExtResource("32_vusgj")]
 position = Vector2(1552, -1128)
+max_health = 3
+health = 3
 facing_right = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=156705081]
 stream = ExtResource("33_j0m4s")
 volume_db = -23.937
 autoplay = true
+max_distance = 2000000.0
+attenuation = 5.694795e-05
