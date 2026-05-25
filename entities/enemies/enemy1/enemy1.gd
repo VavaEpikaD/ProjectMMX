@@ -8,7 +8,10 @@ const BURN_EFFECT_NODE_NAME := "BurnEffect"
 @export var health: int = 3
 @export var projectile_scene: PackedScene = preload("res://entities/projectiles/enemy1/enemy1_projectile.tscn")
 @export var shoot_offset: Vector2 = Vector2.ZERO
-@export var facing_right: bool = true
+@export var facing_right: bool = true:
+	set(value):
+		facing_right = value
+		_update_facing()
 @export var drop_chance: float = 0.25
 @export var drop_scenes: Array[PackedScene] = []
 @export var drop_weights: Array[float] = []
@@ -29,6 +32,7 @@ func _ready() -> void:
 	if sprite:
 		sprite.centered = false
 		_update_sprite_offset()
+	_update_facing()
 	if anim_player:
 		anim_player.play("default")
 	if screen_notifier and not Engine.is_editor_hint():
@@ -52,7 +56,12 @@ func shoot() -> void:
 	if not projectile_scene:
 		return
 	var projectile = projectile_scene.instantiate()
-	projectile.global_position = global_position + shoot_offset
+	var actual_offset = shoot_offset
+	if facing_right:
+		actual_offset.x = abs(actual_offset.x)
+	else:
+		actual_offset.x = -abs(actual_offset.x)
+	projectile.global_position = global_position + actual_offset
 	var dir: Vector2 = _get_shoot_direction()
 	if projectile.has_method("launch"):
 		projectile.launch(dir)
@@ -104,6 +113,12 @@ func _get_pickup_spawner() -> Node:
 
 func _get_shoot_direction() -> Vector2:
 	return Vector2.RIGHT if facing_right else Vector2.LEFT
+
+func _update_facing() -> void:
+	if not is_inside_tree():
+		return
+	if sprite:
+		sprite.flip_h = facing_right
 
 func _update_sprite_offset() -> void:
 	if not sprite:

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b38k7qiqll3jc"]
+
+[ext_resource type="FontFile" uid="uid://cyqcmtejouxcj" path="res://assets/fonts/font_image.png" id="1_olel1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kcyyf"]
+font = ExtResource("1_olel1")
+
+[node name="Node2D" type="Node2D" unique_id=651640068]
+
+[node name="Label" type="Label" parent="." unique_id=1542648196]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_kcyyf")

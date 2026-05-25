@@ -8,7 +8,10 @@ const BURN_EFFECT_NODE_NAME := "BurnEffect"
 @export var health: int = 3
 @export var speed: float = 100.0
 @export var damage: int = 1
-@export var facing_right: bool = true
+@export var facing_right: bool = true:
+	set(value):
+		facing_right = value
+		_update_facing()
 @export var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var drop_chance: float = 0.25
 @export var drop_scenes: Array[PackedScene] = []
@@ -61,6 +64,8 @@ func die() -> void:
 	queue_free()
 
 func _update_facing() -> void:
+	if not is_inside_tree():
+		return
 	if sprite:
 		sprite.flip_h = facing_right
 

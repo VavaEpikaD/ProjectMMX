@@ -46,9 +46,21 @@ func _ready() -> void:
 		normal_bullet_scene = load("res://entities/projectiles/enemy3/enemy3_basic_bullet.tscn") as PackedScene
 	if not gravity_bullet_scene:
 		gravity_bullet_scene = load("res://entities/projectiles/enemy3/enemy3_gravity_bullet.tscn") as PackedScene
+	_update_facing()
 	_set_state(Enemy3State.NORMAL)
 	if screen_notifier and not Engine.is_editor_hint():
 		_set_active(screen_notifier.is_on_screen())
+
+func _update_facing() -> void:
+	if not is_inside_tree():
+		return
+	var sprite: Sprite2D = get_node_or_null("Sprite2D")
+	if sprite:
+		sprite.flip_h = facing_right
+	if shoot_point_normal:
+		shoot_point_normal.position.x = abs(shoot_point_normal.position.x) * (1 if facing_right else -1)
+	if shoot_point_gravity:
+		shoot_point_gravity.position.x = abs(shoot_point_gravity.position.x) * (1 if facing_right else -1)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

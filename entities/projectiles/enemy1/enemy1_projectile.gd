@@ -10,12 +10,18 @@ var _time_alive: float = 0.0
 
 func _ready() -> void:
 	add_to_group("enemy_bullet")
+	var sprite = get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.flip_h = (direction.x > 0)
 
 func launch(dir: Vector2) -> void:
 	direction = dir.normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2.RIGHT
 	rotation = 0.0
+	var sprite = get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.flip_h = (direction.x > 0)
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta

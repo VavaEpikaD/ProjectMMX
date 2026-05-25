@@ -17,6 +17,8 @@ var _rise_dir: Vector2 = Vector2.UP
 func _ready() -> void:
 	add_to_group("enemy_bullet")
 	_velocity = _rise_dir * rise_speed
+	if sprite:
+		sprite.flip_h = (_rise_dir.x > 0)
 
 func launch(dir: Vector2) -> void:
 	if dir == Vector2.ZERO:

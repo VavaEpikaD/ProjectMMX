@@ -10,6 +10,9 @@ var _time_alive: float = 0.0
 
 func _ready() -> void:
 	add_to_group("enemy_bullet")
+	var sprite = get_node_or_null("Sprite2D")
+	if sprite:
+		sprite.flip_h = (direction.x > 0)
 
 func launch(dir: Vector2) -> void:
 	direction = dir.normalized()
