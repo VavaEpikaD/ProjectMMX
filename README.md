@@ -47,7 +47,7 @@ Din punct de vedere tehnic, se urmărește recrearea fidelă a controlului clasi
 
 ## 2. Obiective de Proiectare
 
-### 2.1. Performanță — 60 FPS constanți, input latency minim
+### 2.1. Performanță
 
 - **Separarea logicii de update.** Fizica și mișcarea (gravitație, coliziuni, sărituri) rulează exclusiv în `_physics_process(delta)` la tick-rate fix (60 Hz), pentru comportament determinist. Animațiile ne-critice rămân în `_process(delta)`.
 - **Object Pooling.** Proiectilele X-Buster, inamicii de bază și particulele de explozie sunt pre-încărcate la începutul nivelului și activate/dezactivate prin `visible` și `process_mode`, în loc de `instantiate()` / `queue_free()` la runtime (evită micro-stutters).
