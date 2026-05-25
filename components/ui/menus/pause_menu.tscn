@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dda455tym6e4s"]
+
+[ext_resource type="Script" uid="uid://dlh87he41v5v5" path="res://components/ui/menus/pause_menu.gd" id="1_pause_menu"]
+[ext_resource type="FontFile" uid="uid://cyqcmtejouxcj" path="res://assets/fonts/font_image.png" id="2_nre00"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1114483430]
+layer = 90
+script = ExtResource("1_pause_menu")
+
+[node name="Root" type="Control" parent="." unique_id=399538182]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Root" unique_id=580093758]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="Panel" parent="Root" unique_id=935734083]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -70.0
+offset_right = 160.0
+offset_bottom = 70.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Panel" unique_id=97776445]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Root/Panel/VBoxContainer" unique_id=407071814]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nre00")
+text = "CONTINUE"
+
+[node name="MainMenuButton" type="Button" parent="Root/Panel/VBoxContainer" unique_id=2063209315]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nre00")
+text = "GO TO MAIN MENU"
+
+[node name="ExitButton" type="Button" parent="Root/Panel/VBoxContainer" unique_id=1850139158]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nre00")
+text = "EXIT"

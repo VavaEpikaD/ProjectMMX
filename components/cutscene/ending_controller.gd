@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_over_requested
+
 @export var player_path: NodePath = NodePath("../Player")
 @export var lock_duration: float = 1.0
 @export var walk_distance: float = 40.0
@@ -18,6 +20,7 @@ extends Node2D
 @export var run_anim_name: String = "run"
 @export var force_run_on_trigger: bool = true
 @export var use_player_animation: bool = false
+@export var trigger_game_over: bool = true
 
 @onready var trigger: Area2D = $EndTrigger
 @onready var target: Node2D = $EndTeleportTarget
@@ -65,6 +68,9 @@ func _start_sequence() -> void:
 	_teleport_player()
 	await _fade_to_black()
 	await get_tree().create_timer(black_hold_duration).timeout
+	if trigger_game_over:
+		game_over_requested.emit()
+		return
 	if end_text_delay > 0.0:
 		await get_tree().create_timer(end_text_delay).timeout
 	_show_end_text()
@@ -158,6 +164,7 @@ func _setup_ui() -> void:
 	if fade_rect:
 		fade_rect.color = Color(0, 0, 0, 1)
 		fade_rect.modulate.a = 0.0
+		fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		fade_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 		fade_rect.offset_left = 0.0
 		fade_rect.offset_top = 0.0
@@ -166,6 +173,7 @@ func _setup_ui() -> void:
 	if end_label:
 		end_label.text = end_text
 		end_label.visible = false
+		end_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		end_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		end_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		end_label.set_anchors_preset(Control.PRESET_CENTER)
