@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var test_spawn_enabled: bool = true
+@export var test_spawn_enabled: bool = false
 @export var test_spawn_scene: PackedScene
 @export var test_spawn_scene_variant: PackedScene
 @export var test_spawn_scene_b: PackedScene
