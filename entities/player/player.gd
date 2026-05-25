@@ -9,10 +9,12 @@ var wall_jump_lockout_timer: float = 0.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 var invincibility_timer: float = 0.0
+var special_weapon_cooldown_timer: float = 0.0
 
 var lemon_scene: PackedScene = preload("res://entities/projectiles/buster/lemon.tscn")
 var charge_1_scene = preload("res://entities/projectiles/buster/level1_charge.tscn")
 var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.tscn")
+var special_weapon_scene: PackedScene = preload("res://entities/special_weapon/fire_special_weapon.tscn")
 
 @export var fall_gravity_multiplier: float = 1.0 # Makes falling feel faster/heavier
 @export var short_hop_gravity_multiplier: float = 3.5 # Yanks the player down if they release jump
@@ -22,6 +24,8 @@ var charge_2_scene = preload("res://entities/projectiles/buster/level2_charge.ts
 @export var health: int = 16
 @export var max_weapon_energy: int = 30
 @export var weapon_energy: int = 30
+@export var special_weapon_energy_cost: int = 3
+@export var special_weapon_cooldown: float = 10
 @export var wall_slide_shoot_orientation_delay: bool = false
 @export var invincibility_duration: float = 1.0
 
@@ -87,6 +91,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if movement_sm.current_state:
 		movement_sm.update(delta)
+	_handle_special_weapon(delta)
 		
 	# Handle Invincibility Blinking
 	if invincibility_timer > 0.0:
@@ -155,6 +160,43 @@ func add_weapon_energy(amount: int) -> void:
 	if amount <= 0:
 		return
 	weapon_energy = clamp(weapon_energy + amount, 0, max_weapon_energy)
+
+func _handle_special_weapon(delta: float) -> void:
+	if special_weapon_cooldown_timer > 0.0:
+		special_weapon_cooldown_timer = max(special_weapon_cooldown_timer - delta, 0.0)
+	if Input.is_action_just_pressed("special_weapon"):
+		_try_fire_special_weapon()
+
+func _try_fire_special_weapon() -> void:
+	if special_weapon_cooldown_timer > 0.0:
+		return
+	if weapon_energy < special_weapon_energy_cost:
+		return
+	if not special_weapon_scene:
+		return
+	weapon_energy = clamp(weapon_energy - special_weapon_energy_cost, 0, max_weapon_energy)
+	special_weapon_cooldown_timer = special_weapon_cooldown
+	var projectile = special_weapon_scene.instantiate()
+	if not projectile:
+		return
+	var muzzle = get_node_or_null("Muzzle")
+	update_muzzle()
+	var facing_right: bool = not get_node("Sprite2D").flip_h
+	if movement_sm.current_state.name == "WallSlideState" and not wall_slide_shoot_orientation_delay:
+		facing_right = not facing_right
+		$Muzzle.position.x *= -1
+	if muzzle:
+		projectile.global_position = muzzle.global_position
+	else:
+		projectile.global_position = global_position
+	var dir: Vector2 = Vector2.RIGHT if facing_right else Vector2.LEFT
+	if projectile.has_method("launch"):
+		projectile.launch(dir)
+	var root_scene = get_tree().current_scene
+	if root_scene:
+		root_scene.add_child(projectile)
+	else:
+		get_tree().get_root().add_child(projectile)
 	
 
 func shoot(charge_level: int) -> void:
