@@ -1,25 +1,7 @@
 [gd_scene format=3 uid="uid://cos8gqctp25rs"]
 
 [ext_resource type="Script" uid="uid://5m3k3aujqiuf" path="res://components/ui/menus/main_menu.gd" id="1_main_menu"]
-
-[sub_resource type="FontFile" id="FontFile_bxm8l"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
+[ext_resource type="FontFile" uid="uid://cyqcmtejouxcj" path="res://assets/fonts/font_image.png" id="2_r3u31"]
 
 [node name="MainMenu" type="Control" unique_id=1901506255]
 layout_mode = 3
@@ -51,9 +33,10 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1829255540]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontFile_bxm8l")
+theme_override_fonts/font = ExtResource("2_r3u31")
 text = "PLAY"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1945488607]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r3u31")
 text = "EXIT"
