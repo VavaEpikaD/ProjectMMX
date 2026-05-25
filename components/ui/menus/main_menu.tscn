@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cos8gqctp25rs"]
+
+[ext_resource type="Script" uid="uid://5m3k3aujqiuf" path="res://components/ui/menus/main_menu.gd" id="1_main_menu"]
+
+[sub_resource type="FontFile" id="FontFile_bxm8l"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="MainMenu" type="Control" unique_id=1901506255]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1196017382]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1639316602]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -40.0
+offset_right = 120.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1829255540]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_bxm8l")
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1945488607]
+layout_mode = 2
+text = "EXIT"
